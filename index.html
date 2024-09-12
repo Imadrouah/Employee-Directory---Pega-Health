@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Employee Directory</title>
+        <link rel="stylesheet" href="css/styles.css" />
+        <link rel="stylesheet" href="css/all.min.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <div class="message"></div>
+        <div class="user-profile">
+            <div class="holder">
+                <div class="action">
+                    <span class="close-profile">
+                        <i class="fa-solid fa-xmark fa-xl"></i>
+                    </span>
+                    <div class="profile-icons">
+                        <button class="logout-btn" title="log out">
+                            <i
+                                class="fa-solid fa-arrow-right-from-bracket fa-lg"
+                            ></i>
+                        </button>
+                    </div>
+                </div>
+                <h2>Update profile</h2>
+            </div>
+
+            <div class="container">
+                <form id="update-form">
+                    <div class="input-group">
+                        <label for="update-username">Username:</label>
+                        <input
+                            type="text"
+                            id="update-username"
+                            name="username"
+                            required
+                        />
+                    </div>
+                    <div class="input-group">
+                        <label for="update-password">New password:</label>
+                        <input
+                            type="password"
+                            id="update-password"
+                            name="password"
+                        />
+                    </div>
+                    <div class="input-group">
+                        <label for="old-password">Old password:</label>
+                        <input
+                            type="password"
+                            id="old-password"
+                            name="password"
+                        />
+                    </div>
+                    <button type="submit" class="update-btn">
+                        Update profile
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="loader">
+            <div class="spinner"></div>
+            <div>Loading...</div>
+        </div>
+        <div class="activity">
+            <i class="fa-solid fa-xmark close-activity"></i>
+            <div>
+                <h2>Activities</h2>
+                <div class="activity-content"></div>
+            </div>
+        </div>
+        <div class="notice">
+            <i class="fa-solid fa-xmark close-notice"></i>
+            <div>
+                <h2>Events</h2>
+                <div class="notice-content"></div>
+            </div>
+        </div>
+        <header>
+            <h2>Employee Directory</h2>
+            <div class="icon-container">
+                <div class="box">
+                    <i class="fa-solid fa-clock-rotate-left activity-icon"></i>
+                    <i class="fa-solid fa-bell notice-icon"></i>
+                </div>
+                <div class="time"></div>
+                <div class="box">
+                    <div class="theme">
+                        <img src="img/moon.png" alt="moon" />
+                        <span class="darklight">light</span>
+                    </div>
+                    <button class="user-btn">
+                        <i class="fa-solid fa-user"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="search-container">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input
+                    type="text"
+                    id="search"
+                    placeholder="Search employees..."
+                />
+                <i class="fa-solid fa-xmark close"></i>
+            </div>
+            <div id="employee-list" class="employee-list"></div>
+        </main>
+
+        <div id="profile-popup" class="profile-popup"></div>
+        <script src="js/main.js" defer></script>
+    </body>
+</html>

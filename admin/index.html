@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Admin Dashboard</title>
+        <link rel="stylesheet" href="../css/admin.css" />
+        <link rel="stylesheet" href="../css/all.min.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <div class="loader">
+            <div class="spinner"></div>
+            <div>Loading...</div>
+        </div>
+        <div class="message"></div>
+        <header>
+            <h1>Admin Dashboard</h1>
+            <div class="action">
+                <a href="../index.html">
+                    <i class="fa-solid fa-house"></i>
+                </a>
+                <a href="manager.html">
+                    <i class="fa-solid fa-people-roof"></i>
+                </a>
+                <button class="logout-btn">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                </button>
+            </div>
+        </header>
+
+        <main>
+            <section class="dashboard-section">
+                <h2>Dashboard Statistics</h2>
+                <div class="stats"></div>
+            </section>
+
+            <section class="dashboard-section">
+                <h2>Notifications</h2>
+                <form id="notification-form">
+                    <div class="input-group">
+                        <label for="title">Title:</label>
+                        <input type="text" id="title" name="title" required />
+                    </div>
+                    <div class="input-group">
+                        <label for="date">Event Date:</label>
+                        <input type="date" id="date" name="date" required />
+                    </div>
+                    <div class="input-group">
+                        <label for="description">Description:</label>
+                        <textarea
+                            id="description"
+                            name="description"
+                            required
+                        ></textarea>
+                    </div>
+                    <button type="submit" class="add-btn">
+                        Add Notification
+                    </button>
+                </form>
+
+                <h3>Existing Notifications</h3>
+                <div class="container">
+                    <form id="update-form">
+                        <i class="fa-solid fa-xmark close-update"></i>
+                        <div class="input-group">
+                            <label for="title">Title:</label>
+                            <input
+                                type="text"
+                                id="update-title"
+                                name="title"
+                                required
+                            />
+                        </div>
+                        <div class="input-group">
+                            <label for="date">Event Date:</label>
+                            <input
+                                type="date"
+                                id="update-date"
+                                name="date"
+                                required
+                            />
+                        </div>
+                        <div class="input-group">
+                            <label for="description">Description:</label>
+                            <textarea
+                                id="update-description"
+                                name="description"
+                                required
+                            ></textarea>
+                        </div>
+                        <button type="submit" class="update-btn">
+                            update Notification
+                        </button>
+                    </form>
+                    <ul id="notifications-list"></ul>
+                </div>
+            </section>
+        </main>
+        <script src="../js/admin.js"></script>
+    </body>
+</html>
