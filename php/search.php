@@ -8,8 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 WHERE name LIKE '$query%' OR 
                 position LIKE '$query%' OR 
                 email LIKE '$query%' OR 
-                phone LIKE '$query%' OR 
-                skills LIKE '$query%'";
+                phone LIKE '$query%'";
         $res = mysqli_query($conn, $sql);
 
         if (mysqli_num_rows($res) == 0) {

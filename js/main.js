@@ -29,7 +29,7 @@ $(document).ready(function () {
     });
 
     function updateTime() {
-        $(".time").html(
+        $(".appTime").html(
             new Date().toLocaleString([], {
                 hour: "2-digit",
                 minute: "2-digit",
@@ -220,23 +220,26 @@ $(document).ready(function () {
             noticeContent.append(`<p>${notiData.message}</p>`);
             return;
         }
-
         notiData.data.forEach((notification) => {
             const eventElement = `
-            <div class="event">
-                <div class="time">
-                    <span>${new Date(notification.date).toLocaleString(
-                        "default",
-                        { month: "short", year: "numeric" }
-                    )}</span>
-                    <span>${new Date(notification.date).getDate()}</span>
-                </div>
-                <div class="info">
-                    <h3>${notification.title}</h3>
-                    <p>${notification.description}</p>
-                </div>
+            <div class="event ${
+                notification.is_today == 1 ? "event-today" : ""
+            }" ${
+                notification.is_today == 1 ? 'title="This Event Is Today"' : ""
+            }>
+            <div class="time">
+            <span>${new Date(notification.date).toLocaleString("default", {
+                month: "short",
+                year: "numeric",
+            })}</span>
+            <span>${new Date(notification.date).getDate()}</span>
             </div>
-        `;
+            <div class="info">
+            <h3>${notification.title}</h3>
+            <p>${notification.description}</p>
+            </div>
+            </div>
+            `;
             noticeContent.append(eventElement);
         });
     }
@@ -269,6 +272,8 @@ $(document).ready(function () {
             method: "GET",
             dataType: "json",
             success: function (data) {
+                if (data.event) $(".notice-icon").addClass("warn");
+                else $(".notice-icon").removeClass("warn");
                 displayEmployees(data);
             },
             error: function (error) {
@@ -283,12 +288,22 @@ $(document).ready(function () {
 
         if (employees.status == 0) {
             employeeList.append(`<p>${employees.message}</p>`);
-            return;
-        }
-        employees.data.forEach((employee) => {
-            const employeeItem = $("<div></div>");
-            employeeItem.addClass("employee-item");
-            employeeItem.html(`
+            $("#exportBtn").attr("disabled", "true");
+        } else {
+            $("#exportBtn").removeAttr("disabled");
+            $("#exportBtn").on("click", function () {
+                const query = $("#search").val().toLowerCase().trim();
+                if (query.length > 0) {
+                    window.location.href = `php/export_employees.php?query=${query}`;
+                } else {
+                    window.location.href = "php/export_employees.php";
+                }
+            });
+
+            employees.data.forEach((employee) => {
+                const employeeItem = $("<div></div>");
+                employeeItem.addClass("employee-item");
+                employeeItem.html(`
                 <div class="info">
                     <span>${employee.name}</span>
                     <span>${employee.position}</span>
@@ -299,12 +314,13 @@ $(document).ready(function () {
                 </div>
             `);
 
-            employeeItem.on("click", function () {
-                showProfilePopup(employee);
-            });
+                employeeItem.on("click", function () {
+                    showProfilePopup(employee);
+                });
 
-            employeeList.append(employeeItem);
-        });
+                employeeList.append(employeeItem);
+            });
+        }
         setTimeout(() => {
             employeeList.addClass("animate");
         }, 100);

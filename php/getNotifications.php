@@ -1,7 +1,8 @@
 <?php
 include('db.php');
 
-$query = "SELECT * FROM notifications ORDER BY event_date ASC LIMIT 10";
+$query = "SELECT id, title, description, event_date,DATE(event_date) = CURDATE() AS is_today
+            FROM notifications  ORDER BY event_date ASC  LIMIT 10;";
 $result = mysqli_query($conn, $query);
 
 if (mysqli_num_rows($result) == 0) {
@@ -13,7 +14,8 @@ if (mysqli_num_rows($result) == 0) {
             "id" => $row["id"],
             "title" => $row["title"],
             "description" => $row["description"],
-            "date" => $row["event_date"]
+            "date" => $row["event_date"],
+            "is_today" => $row["is_today"]
         );
     }
     echo json_encode(["status" => 1, "data" => $data]);

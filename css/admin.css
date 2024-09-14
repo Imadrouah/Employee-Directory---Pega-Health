@@ -446,6 +446,12 @@ textarea {
     min-height: 50px;
     max-height: 110px;
 }
+@media (max-width: 668px) {
+    textarea {
+        resize: none;
+        height: 110px;
+    }
+}
 button.add-btn,
 button.update-btn {
     background-color: #51d371;

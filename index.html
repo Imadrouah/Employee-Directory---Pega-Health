@@ -85,7 +85,7 @@
                     <i class="fa-solid fa-clock-rotate-left activity-icon"></i>
                     <i class="fa-solid fa-bell notice-icon"></i>
                 </div>
-                <div class="time"></div>
+                <div class="appTime"></div>
                 <div class="box">
                     <div class="theme">
                         <img src="img/moon.png" alt="moon" />
@@ -97,20 +97,26 @@
                 </div>
             </div>
         </header>
-
         <main>
-            <div class="search-container">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input
-                    type="text"
-                    id="search"
-                    placeholder="Search employees..."
-                />
-                <i class="fa-solid fa-xmark close"></i>
+            <div class="holder">
+                <div class="search-container">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input
+                        type="text"
+                        id="search"
+                        placeholder="Search employees..."
+                    />
+                    <i class="fa-solid fa-xmark close"></i>
+                </div>
+                <button id="exportBtn">
+                    <i
+                        class="fa-solid fa-download fa-lg"
+                        title="Export list of employees in an excel file"
+                    ></i>
+                </button>
             </div>
             <div id="employee-list" class="employee-list"></div>
         </main>
-
         <div id="profile-popup" class="profile-popup"></div>
         <script src="js/main.js" defer></script>
     </body>

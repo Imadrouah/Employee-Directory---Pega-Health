@@ -45,8 +45,8 @@ body {
     background-color: #51d371;
     color: white;
 }
-body:has(.profile-popup) {
-    overflow: hidden;
+body:has(.profile-popup.show) {
+    overflow: hidden !important;
 }
 body:has(.profile-popup):has(.loader.stop) {
     overflow: initial;
@@ -234,6 +234,34 @@ button.update-btn:hover {
     transform: translateY(-100%);
     transition: 0.4s;
 }
+.notice-icon {
+    position: relative;
+}
+.notice-icon::after {
+    content: "";
+    position: absolute;
+    right: -4px;
+    top: -5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #f44336;
+    animation: blink 1s ease-in-out infinite;
+    animation-play-state: paused;
+    opacity: 0;
+}
+.warn.notice-icon::after {
+    animation-play-state: running;
+    opacity: 1;
+}
+@keyframes blink {
+    50% {
+        opacity: 0.3;
+    }
+    100% {
+        opacity: 1;
+    }
+}
 .dark .notice,
 .dark .activity {
     background-color: rgb(37 37 37 / 90%);
@@ -370,6 +398,17 @@ body:has(.activity.show) > *:not(.activity, .show) {
 .event:not(:last-child) {
     margin-bottom: 15px;
 }
+.event-today {
+    position: relative;
+}
+.event-today::before {
+    content: "★";
+    position: absolute;
+    right: 10px;
+    top: 0px;
+    color: #ffd700;
+    font-size: 1.9em;
+}
 .event .time {
     display: flex;
     flex-direction: column;
@@ -497,14 +536,38 @@ header h2 {
     border-radius: 3px;
     cursor: pointer;
 }
+.holder:has(.search-container) {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 20px auto;
+    gap: 20px;
+    max-width: 500px;
+}
+.holder:has(.search-container) button {
+    all: unset;
+    background-color: var(--main-color);
+    background-color: #ee5467;
+    color: white;
+    padding: 9px;
+    cursor: pointer;
+}
 .search-container {
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    margin: 20px auto;
-    max-width: 500px;
     font-size: 18px;
+    width: 100%;
+}
+@media (max-width: 737px) {
+    .holder:has(.search-container) {
+        max-width: 80vw;
+        gap: 15px;
+    }
+    .search-container {
+        width: 84%;
+    }
 }
 .search-container input {
     width: 100%;
@@ -528,17 +591,6 @@ header h2 {
 .search-container .close {
     right: 10px;
     display: none;
-}
-@media (max-width: 737px) {
-    .search-container input {
-        width: 90%;
-    }
-    .search-container .fa-magnifying-glass {
-        left: 30px;
-    }
-    .search-container .close {
-        right: 30px;
-    }
 }
 .main {
     padding: 20px;
