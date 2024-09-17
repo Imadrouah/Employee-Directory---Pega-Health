@@ -6,11 +6,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id = $_POST['id'];
     $name = $_POST['name'];
     $position = $_POST['position'];
+    $cin = $_POST['cin'];
     $email = $_POST['email'];
     $phone = $_POST['phone'];
     $skills = $_POST['skills'];
 
-    $sql = "UPDATE employees SET name = '$name', position = '$position', email = '$email', phone = '$phone', skills = '$skills' WHERE id = '$id'";
+    $sql = "UPDATE employees SET name = '$name', position = '$position', cin = '$cin' , email = '$email', phone = '$phone', skills = '$skills' WHERE id = '$id'";
 
     if (mysqli_query($conn, $sql)) {
         $username = $_SESSION["username"];

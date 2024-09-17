@@ -14,12 +14,13 @@ $filename = "employees_" . "Pega_Health" . "_" . date('Y-m-d') . ".csv";
 header('Content-Type: text/csv');
 header('Content-Disposition: attachment;filename=' . $filename);
 $output = fopen('php://output', 'w');
-fputcsv($output, array('ID', 'Name', 'Position', 'Email', 'Phone'));
+fputcsv($output, array('ID', 'Name', 'Position', 'cin', 'Email', 'Phone'));
 while ($row = mysqli_fetch_assoc($res)) {
     fputcsv($output, array(
         $row['id'],
         $row['name'],
         $row['position'],
+        $row['cin'],
         $row['email'],
         '"' . $row["phone"] . '"',
     ));

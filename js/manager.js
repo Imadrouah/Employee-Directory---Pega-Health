@@ -16,7 +16,8 @@ $.ajax({
 });
 
 $(document).ready(function () {
-    let fetchedUsers, fetchedEmployees;
+    let fetchedUsers = null,
+        fetchedEmployees = null;
     if (localStorage.getItem("theme") == "dark") {
         $("html").addClass("dark");
     } else {
@@ -147,12 +148,14 @@ $(document).ready(function () {
             $("#update-employee-form").addClass("open");
             let name = fetchedEmployees.find((e) => e.id == id).name;
             let position = fetchedEmployees.find((e) => e.id == id).position;
+            let cin = fetchedEmployees.find((e) => e.id == id).cin;
             let email = fetchedEmployees.find((e) => e.id == id).email;
             let phone = fetchedEmployees.find((e) => e.id == id).phone;
             let skills = fetchedEmployees.find((e) => e.id == id).skills;
             $("#update-employee-form").attr("data-id", id);
             $("#update-employee-name").val(name);
             $("#update-employee-position").val(position);
+            $("#update-employee-cin").val(cin);
             $("#update-employee-email").val(email);
             $("#update-employee-phone").val(phone);
             $("#update-employee-skills").val(skills);
@@ -181,6 +184,7 @@ $(document).ready(function () {
         event.preventDefault();
         let name = $("#employee-name").val().trim();
         let position = $("#employee-position").val().trim();
+        let cin = $("#employee-cin").val().trim().toUpperCase();
         let email = $("#employee-email").val().trim();
         let phone = $("#employee-phone").val().trim();
         let skills = $("#employee-skills").val().trim();
@@ -192,6 +196,7 @@ $(document).ready(function () {
             data: {
                 name: name,
                 position: position,
+                cin: cin,
                 email: email,
                 phone: phone,
                 skills: skills,
@@ -214,6 +219,7 @@ $(document).ready(function () {
         let id = $(this).data("id");
         let name = $("#update-employee-name").val().trim();
         let position = $("#update-employee-position").val().trim();
+        let cin = $("#update-employee-cin").val().trim().toUpperCase();
         let email = $("#update-employee-email").val().trim();
         let phone = $("#update-employee-phone").val().trim();
         let skills = $("#update-employee-skills").val().trim();
@@ -226,6 +232,7 @@ $(document).ready(function () {
                 id: id,
                 name: name,
                 position: position,
+                cin: cin,
                 email: email,
                 phone: phone,
                 skills: skills,

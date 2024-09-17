@@ -337,6 +337,7 @@ $(document).ready(function () {
                 <span class="close-btn"><i class="fa-solid fa-xmark fa-xl"></i></span>
                 <h2>${employee.name}</h2>
                 <p><strong>Position: </strong>${employee.position}</p>
+                <p><strong>CIN: </strong>${employee.cin}</p>
                 <p><strong>Email: </strong>${employee.email}</p>
                 <p><strong>Phone: </strong>${employee.phone}</p>
                 <p><strong>Skills: </strong><span class="skills">${skills}</span></p>

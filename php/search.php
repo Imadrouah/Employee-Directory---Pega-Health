@@ -7,6 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql = "SELECT * FROM employees 
                 WHERE name LIKE '$query%' OR 
                 position LIKE '$query%' OR 
+                cin LIKE '$query%' OR 
                 email LIKE '$query%' OR 
                 phone LIKE '$query%'";
         $res = mysqli_query($conn, $sql);

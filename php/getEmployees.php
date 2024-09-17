@@ -17,6 +17,7 @@ if (mysqli_num_rows($res) == 0) {
             "id" => $row["id"],
             "name" => $row["name"],
             "position" => $row["position"],
+            "cin" => $row["cin"],
             "email" => $row["email"],
             "phone" => $row["phone"],
             "skills" => $row["skills"]
