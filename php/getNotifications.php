@@ -1,8 +1,12 @@
 <?php
 include('db.php');
 
-$query = "SELECT id, title, description, event_date,DATE(event_date) = CURDATE() AS is_today
-            FROM notifications  ORDER BY event_date ASC  LIMIT 10;";
+$query = "SELECT id, title, description, event_date, 
+                DATE(event_date) = CURDATE() AS is_today
+                FROM notifications
+                WHERE event_date >= CURDATE()
+                ORDER BY event_date ASC
+                LIMIT 10;";
 $result = mysqli_query($conn, $query);
 
 if (mysqli_num_rows($result) == 0) {
