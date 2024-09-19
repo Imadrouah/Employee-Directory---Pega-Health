@@ -21,6 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     "id" => $row["id"],
                     "name" => $row["name"],
                     "position" => $row["position"],
+                    "cin" => $row["cin"],
                     "email" => $row["email"],
                     "phone" => $row["phone"],
                     "skills" => $row["skills"]
